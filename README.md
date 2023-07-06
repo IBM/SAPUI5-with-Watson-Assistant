@@ -39,7 +39,7 @@ Steps to integrate Watson Assistant Chatbot on Web Applications or SAPUI5/Fiori 
 
 - The following is the architecture of a SAP UI5 application, we are using VS code for the development purpose, we can use other IDEs as well as per our requirement. 
 
-![fig2](images/fig2.jpg)
+![fig2](images/fig2.png)
 
 **Note**: The above is an SAP UI5/Fiori application project architecture. We are supposed to play around the “Index.html” file of the application. 
 
