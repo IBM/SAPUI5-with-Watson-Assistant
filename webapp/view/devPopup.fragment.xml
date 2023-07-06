@@ -1,0 +1,25 @@
+ <c:FragmentDefinition xmlns="sap.m" xmlns:c="sap.ui.core">
+     <Popover id="myPopover" showHeader="false" contentWidth="320px" contentHeight="500px" placement="Bottom" ariaLabelledBy="master-title">
+        <NavContainer id="navCon">
+            <Page id="master" class="sapUiResponsivePadding--header" title="Details">
+                <Panel id="panel" width="auto" accessibleRole="Region">
+                    <content>
+                    <VBox>
+                        <Text text="{fragModel>/Name}"/>
+                        <Text text="{fragModel>/Designation}"/>
+                        <Text text="{fragModel>/Org}"/>
+                        <Text text="{fragModel>/SubOrg}"/>
+                        <Text text="{fragModel>/Email}"/>
+                        <Text text="{fragModel>/Phone}"/>
+                        </VBox>
+                        <!-- <ObjectHeader visible="false" id="packageAttributes" binding="{fragModel>/results}">
+                            <ObjectAttribute id="name" text="{fragModel>Name}" />
+                            <ObjectAttribute id="des" text="{fragModel>Designation}" />
+                        </ObjectHeader> -->
+                    </content>
+                </Panel>
+                    
+            </Page>
+        </NavContainer>
+    </Popover> 
+</c:FragmentDefinition> 

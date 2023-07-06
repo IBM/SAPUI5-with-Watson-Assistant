@@ -1,0 +1,801 @@
+<mvc:View controllerName="com.demo.ztabledemo.controller.Page6" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m">
+    <Page showHeader="true" title="Orders" showFooter="false" showNavButton="true" enableScrolling="false" navButtonPress="onPageNavButtonPress">
+        <content>
+            <!-- <ScrollContainer id="oScrollContainer" height="100%" vertical="true">
+                <List items="{listModel>/results}" growing="true">
+                    <ObjectListItem type="Active" press="onListItemPress">
+                        <firstStatus>
+                            <ObjectStatus text="{listModel>creator}" />
+                        </firstStatus>
+                        <ObjectAttribute text="{listModel>PoNumber}" />
+                    </ObjectListItem>
+                </List>
+            </ScrollContainer> -->
+
+            <!-- after here-->
+            <l:VerticalLayout class="sapUiContentPadding equalColumns" growing="false" height="100%" width="100%">
+                <FlexBox fitContainer="false" class="columns">
+                    <ScrollContainer id="oScrollContainer" vertical="true" height="900px">
+                        <List width="420.00000000px" items="{listModel>/results}">
+                            <ObjectListItem press="_firstItemPress" intro="Date: {listModel>DocDate}" title="{listModel>PoNumber}" number="{listModel>NET_PRICE}" numberUnit="EUR" numberState="None" type="Active" selected="true" showMarkers="false">
+                                <attributes>
+                                    <ObjectAttribute text="Order Number" active="false" visible="true" />
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="Status: {listModel>Status}" state="None" visible="true" />
+                                </firstStatus>
+                                <secondStatus />
+                            </ObjectListItem>
+                        </List>
+                    </ScrollContainer>
+                    <!-- <List  width="332.00000000px" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                        <infoToolbar>
+                            <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                <content>
+                                    <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </content>
+                            </Toolbar>
+                        </infoToolbar>
+                        <headerToolbar>
+                            <Toolbar enabled="false" visible="false" width="" design="Solid">
+                                <content>
+                                    <SearchField placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+                                </content>
+                            </Toolbar>
+                        </headerToolbar>
+                        <items>
+                            <ObjectListItem press="_firstItemPress"   intro="Date: 10/09/2022" title="Order 1000100" number="1,000" numberUnit="USD" numberState="None" type="Active" selected="true" showMarkers="false">
+                                <attributes>
+                                    <ObjectAttribute text="iPhone 14 Pro Max" active="false" visible="true"/>
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="In Transit" state="None" visible="true"/>
+                                </firstStatus>
+                                <secondStatus/>
+                            </ObjectListItem>
+                            <ObjectListItem press="_secondItemPress" intro="Date: 11/09/2022" title="Order 1000102" number="920" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                <attributes>
+                                    <ObjectAttribute text="iPhone 14 Pro" active="false" visible="true"/>
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="Delivered" state="None" visible="true"/>
+                                </firstStatus>
+                                <secondStatus/>
+                            </ObjectListItem>
+                            <ObjectListItem press="_thirdItemPress" intro="Date: 12/09/2022" title="Order 1000103" number="820" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                <attributes>
+                                    <ObjectAttribute text="Samsung S20 5G FE" active="false" visible="true"/>
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="Delivered" state="None" visible="true"/>
+                                </firstStatus>
+                                <secondStatus/>
+                            </ObjectListItem>
+                            <ObjectListItem press="_fourthItemPress" intro="Date: 13/09/2022" title="Order 1000104" number="720" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                <attributes>
+                                    <ObjectAttribute text="OnePlus 10T (256 GB)" active="false" visible="true"/>
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="Shipped" state="None" visible="true"/>
+                                </firstStatus>
+                                <secondStatus/>
+                            </ObjectListItem>
+                        </items>
+                    </List> -->
+                    <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="100%" height="100%" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                        <items>
+                            <IconTabBar id="firstItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                <items>
+                                    <IconTabFilter text="{singleModel>/PoNumber}" count="{= ${singleModel>/itemCount} === 1 ? ${singleModel>/itemCount}+' item' : ${singleModel>/itemCount}+' items'}"  design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Table items="{singleOrderModel>/results}"  id="idOrderTable" inset="false">
+                                                <headerToolbar>
+                                                    <OverflowToolbar>
+                                                        <content>
+                                                            <Title text="Order: {singleModel>/PoNumber}" level="H2" />
+                                                            <ToolbarSpacer />
+                                                            <Title text="Created on: {singleModel>/CreatedOn}" level="H2" />
+                                                            <ToolbarSpacer />
+                                                            <Title text="Created by: {singleModel>/CreatedBy}" level="H2" />
+                                                        </content>
+                                                    </OverflowToolbar>
+                                                </headerToolbar>
+                                                <infoToolbar>
+                                                    <OverflowToolbar>
+                                                        <Label text="Vendor: {singleModel>/VendName}({singleModel>/Vendor})" />
+                                                        <ToolbarSpacer />
+                                                        <Label text="Procedure: {singleModel>/Procedure}" />
+                                                        <ToolbarSpacer />
+                                                        <Label text="Purchase Org: {singleModel>/PurchOrg}" />
+                                                        <ToolbarSpacer />
+                                                        <Label text="Country: {singleModel>/TaxrCntry}" />
+                                                    </OverflowToolbar>
+                                                </infoToolbar>
+                                                <columns>
+                                                    <Column width="12em">
+                                                        <Text text="Item" />
+                                                    </Column>
+                                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                        <Text text="InfoRec" />
+                                                    </Column>
+                                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                        <Text text="Plant" />
+                                                    </Column>
+                                                    <Column hAlign="End">
+                                                        <Text text="Qty" />
+                                                    </Column>
+                                                    <Column hAlign="End">
+                                                        <Text text="Price" />
+                                                    
+                                                    <footer>
+                                                        <Text id="idFooterText" text="{singleModel>/totalPrice} {singleModel>/Currency}"/>
+                                                        </footer>
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem vAlign="Middle">
+                                                        <cells>
+                                                            <ObjectIdentifier title="{singleOrderModel>ShortText}" text="Material: {singleOrderModel>Material}" />
+                                                            <Text text="{singleOrderModel>InfoRec}" />
+                                                            <Text text="{singleOrderModel>Plant}" />
+                                                            <ObjectIdentifier title="{singleOrderModel>DispQuan}"  />
+                                                            <ObjectIdentifier title="{singleOrderModel>total}" text="{singleOrderModel>NetPrice} {singleOrderModel>Unit} X {singleOrderModel>DispQuan} " />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    
+                                                </items>
+                                               
+                                            </Table>
+                                        </content>
+                                    </IconTabFilter>
+                                </items>
+                                <!-- <content>
+                                    <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </content> -->
+                            </IconTabBar>
+                            <!-- <IconTabBar id="secondItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                <items>
+                                    <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                <infoToolbar />
+                                                <headerToolbar>
+                                                    <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                        <content>
+                                                            <Title text="Order 1000102 (Delivered)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin" />
+                                                            <ToolbarSpacer width="" />
+                                                            <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                        </content>
+                                                    </OverflowToolbar>
+                                                </headerToolbar>
+                                                <columns>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="iPhone 14 Pro" text="Apple" titleActive="false" visible="true" />
+                                                            <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="900.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="20W C-lightning Adapter" text="Apple" titleActive="false" visible="true" />
+                                                            <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="Lightning EarPods" text="Apple" titleActive="false" visible="true" />
+                                                            <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                </items>
+                                <content>
+                                    <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </content>
+                            </IconTabBar>
+                            <IconTabBar id="thirdItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                <items>
+                                    <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                <infoToolbar />
+                                                <headerToolbar>
+                                                    <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                        <content>
+                                                            <Title text="Order 1000103 (Delivered)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin" />
+                                                            <ToolbarSpacer width="" />
+                                                            <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                        </content>
+                                                    </OverflowToolbar>
+                                                </headerToolbar>
+                                                <columns>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="Samsung S20 FE 5G" text="Samsung" titleActive="false" visible="true" />
+                                                            <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="800.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="60W C-USB Adapter" text="Samsung" titleActive="false" visible="true" />
+                                                            <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="Wireless EarPods" text="Samsung" titleActive="false" visible="true" />
+                                                            <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                </items>
+                                <content>
+                                    <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </content>
+                            </IconTabBar>
+                            <IconTabBar id="fourthItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                <items>
+                                    <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                <infoToolbar />
+                                                <headerToolbar>
+                                                    <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                        <content>
+                                                            <Title text="Order 1000104 (Shipped)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin" />
+                                                            <ToolbarSpacer width="" />
+                                                            <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                            <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                                        </content>
+                                                    </OverflowToolbar>
+                                                </headerToolbar>
+                                                <columns>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                        <header>
+                                                            <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </header>
+                                                        <footer />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="OnePlus 10T" text="OnePlus" titleActive="false" visible="true" />
+                                                            <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="700.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="65W C-USB Adapter" text="OnePlus" titleActive="false" visible="true" />
+                                                            <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                    <ColumnListItem type="Active">
+                                                        <cells>
+                                                            <ObjectIdentifier title="OnePlus EarBuds" text="OnePlus" titleActive="false" visible="true" />
+                                                            <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                            <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None" />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                    <IconTabSeparator icon="" iconDensityAware="false" />
+                                    <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                        <content>
+                                            <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        </content>
+                                    </IconTabFilter>
+                                </items>
+                                <content>
+                                    <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </content>
+                            </IconTabBar> -->
+                        </items>
+                        <layoutData />
+                    </HBox>
+                </FlexBox>
+            </l:VerticalLayout>
+            <!-- <layout1:AbsoluteLayout horizontalScrolling="Hidden" verticalScrolling="Auto">
+                <layout1:positions>
+                    <layout1:PositionContainer left="0px" top="0px">
+                        <layout1:control>
+                            <List  width="332.00000000px" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                                <infoToolbar>
+                                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                        <content>
+                                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </Toolbar>
+                                </infoToolbar>
+                                <headerToolbar>
+                                    <Toolbar enabled="false" visible="false" width="" design="Solid">
+                                        <content>
+                                            <SearchField placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+                                        </content>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <items>
+                                    <ObjectListItem press="_firstItemPress"   intro="Date: 10/09/2022" title="Order 1000100" number="1,000" numberUnit="USD" numberState="None" type="Active" selected="true" showMarkers="false">
+                                        <attributes>
+                                            <ObjectAttribute text="iPhone 14 Pro Max" active="false" visible="true"/>
+                                        </attributes>
+                                        <firstStatus>
+                                            <ObjectStatus text="In Transit" state="None" visible="true"/>
+                                        </firstStatus>
+                                        <secondStatus/>
+                                    </ObjectListItem>
+                                    <ObjectListItem press="_secondItemPress" intro="Date: 11/09/2022" title="Order 1000102" number="920" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                        <attributes>
+                                            <ObjectAttribute text="iPhone 14 Pro" active="false" visible="true"/>
+                                        </attributes>
+                                        <firstStatus>
+                                            <ObjectStatus text="Delivered" state="None" visible="true"/>
+                                        </firstStatus>
+                                        <secondStatus/>
+                                    </ObjectListItem>
+                                    <ObjectListItem press="_thirdItemPress" intro="Date: 12/09/2022" title="Order 1000103" number="820" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                        <attributes>
+                                            <ObjectAttribute text="Samsung S20 5G FE" active="false" visible="true"/>
+                                        </attributes>
+                                        <firstStatus>
+                                            <ObjectStatus text="Delivered" state="None" visible="true"/>
+                                        </firstStatus>
+                                        <secondStatus/>
+                                    </ObjectListItem>
+                                    <ObjectListItem press="_fourthItemPress" intro="Date: 13/09/2022" title="Order 1000104" number="720" numberUnit="USD" numberState="None" type="Active" selected="false" showMarkers="false">
+                                        <attributes>
+                                            <ObjectAttribute text="OnePlus 10T (256 GB)" active="false" visible="true"/>
+                                        </attributes>
+                                        <firstStatus>
+                                            <ObjectStatus text="Shipped" state="None" visible="true"/>
+                                        </firstStatus>
+                                        <secondStatus/>
+                                    </ObjectListItem>
+                                </items>
+                            </List>
+                        </layout1:control>
+                    </layout1:PositionContainer>
+                    <layout1:PositionContainer left="336px" top="1px">
+                        <layout1:control>
+                            <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="924.1875px" height="746.1875px" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                                <items>
+                                    <IconTabBar id="firstItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                        <items>
+                                            <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                        <infoToolbar/>
+                                                        <headerToolbar>
+                                                            <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                                <content>
+                                                                    <Title text="Order 1000100 (In Transit)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin"/>
+                                                                    <ToolbarSpacer width=""/>
+                                                                    <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                </content>
+                                                            </OverflowToolbar>
+                                                        </headerToolbar>
+                                                        <columns>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                        </columns>
+                                                        <items>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="iPhone 14 Pro Max" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="980.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="20W C-lightning Adapter" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="Lightning EarPods" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                        </items>
+                                                    </Table>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                        </items>
+                                        <content>
+                                            <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </IconTabBar>
+                                    <IconTabBar id="secondItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                        <items>
+                                            <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                        <infoToolbar/>
+                                                        <headerToolbar>
+                                                            <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                                <content>
+                                                                    <Title text="Order 1000102 (Delivered)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin"/>
+                                                                    <ToolbarSpacer width=""/>
+                                                                    <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                </content>
+                                                            </OverflowToolbar>
+                                                        </headerToolbar>
+                                                        <columns>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                        </columns>
+                                                        <items>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="iPhone 14 Pro" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="900.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="20W C-lightning Adapter" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="Lightning EarPods" text="Apple" titleActive="false" visible="true"/>
+                                                                    <Text text="Apple Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                        </items>
+                                                    </Table>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                        </items>
+                                        <content>
+                                            <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </IconTabBar>
+                                    <IconTabBar id="thirdItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                        <items>
+                                            <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                        <infoToolbar/>
+                                                        <headerToolbar>
+                                                            <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                                <content>
+                                                                    <Title text="Order 1000103 (Delivered)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin"/>
+                                                                    <ToolbarSpacer width=""/>
+                                                                    <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                </content>
+                                                            </OverflowToolbar>
+                                                        </headerToolbar>
+                                                        <columns>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                        </columns>
+                                                        <items>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="Samsung S20 FE 5G" text="Samsung" titleActive="false" visible="true"/>
+                                                                    <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="800.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="60W C-USB Adapter" text="Samsung" titleActive="false" visible="true"/>
+                                                                    <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="Wireless EarPods" text="Samsung" titleActive="false" visible="true"/>
+                                                                    <Text text="Samsung Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                        </items>
+                                                    </Table>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                        </items>
+                                        <content>
+                                            <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </IconTabBar>
+                                    <IconTabBar id="fourthItem" expandable="true" expanded="true" applyContentPadding="true" backgroundDesign="Transparent" upperCase="false" visible="false" selectedKey="Ok" class="sapUiSmallMargin sapUiForceWidthAuto">
+                                        <items>
+                                            <IconTabFilter icon="sap-icon://hint" iconColor="Positive" text="Ok" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                                                        <infoToolbar/>
+                                                        <headerToolbar>
+                                                            <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                                                                <content>
+                                                                    <Title text="Order 1000104 (Shipped)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" class="sapUiLargeMargin"/>
+                                                                    <ToolbarSpacer width=""/>
+                                                                    <OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                    <OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                                                                </content>
+                                                            </OverflowToolbar>
+                                                        </headerToolbar>
+                                                        <columns>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Product" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Supplier" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                                <header>
+                                                                    <Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                </header>
+                                                                <footer/>
+                                                            </Column>
+                                                        </columns>
+                                                        <items>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="OnePlus 10T" text="OnePlus" titleActive="false" visible="true"/>
+                                                                    <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="700.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="65W C-USB Adapter" text="OnePlus" titleActive="false" visible="true"/>
+                                                                    <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                            <ColumnListItem type="Active">
+                                                                <cells>
+                                                                    <ObjectIdentifier title="OnePlus EarBuds" text="OnePlus" titleActive="false" visible="true"/>
+                                                                    <Text text="OnePlus Retail" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                                    <ObjectNumber number="10.00" unit="USD" emphasized="true" state="None"/>
+                                                                </cells>
+                                                            </ColumnListItem>
+                                                        </items>
+                                                    </Table>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Attachments go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                            <IconTabSeparator icon="" iconDensityAware="false"/>
+                                            <IconTabFilter icon="sap-icon://notes" iconColor="Neutral" text="" count="3" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                                                <content>
+                                                    <Text text="Notes go here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </content>
+                                            </IconTabFilter>
+                                        </items>
+                                        <content>
+                                            <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        </content>
+                                    </IconTabBar>
+                                </items>
+                                <layoutData/>
+                            </HBox>
+                        </layout1:control>
+                    </layout1:PositionContainer>
+                </layout1:positions>
+            </layout1:AbsoluteLayout> -->
+        </content>
+    </Page>
+</mvc:View>

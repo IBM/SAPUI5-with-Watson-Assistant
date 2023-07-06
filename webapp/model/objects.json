@@ -1,0 +1,27 @@
+{
+	"Objects": [{
+			"Name": "Ankit Guria",
+			"Designation": "R&D Engineer(FrontEnd)",
+			"Org": "IBM",
+			"SubOrg": "India Software Labs",
+			"Email": "ankit.guria@ibm.com",
+			"Phone": "+91 99345 80602"
+
+		}, {
+			"Name": "Tushar Trivedi",
+			"Designation": "R&D Consultant(Backend)",
+			"Org": "IBM",
+			"SubOrg": "India Software Labs",
+			"Email": "tushar.trivedi@ibm.com",
+			"Phone": "+91 80006 49150"
+		}, {
+			"Name": "Amol Dhondse",
+			"Designation": "AI Architect",
+			"Org": "IBM",
+			"SubOrg": "India Software Labs",
+			"Email": "amol.dhondse@in.ibm.com",
+			"Phone": "+91 97633 57230"
+		}
+
+	]
+}

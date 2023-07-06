@@ -1,0 +1,154 @@
+<mvc:View controllerName="com.demo.ztabledemo.controller.LandingPage" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core">
+    <App id="app">
+        <pages>
+            <Page showHeader="true" showFooter="true" showNavButton="false">
+                <content>
+                    <HBox alignItems="Stretch" direction="Row" fitContainer="true" width="auto" height="auto" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
+                        <items>
+                            <SearchField search="onSearch" placeholder="Search for items or categories like Pump/ Charger/ Refrigerators/ Fridge" showSearchButton="true" visible="true" width="922.7890625px" />
+                            <layout:Grid defaultIndent="L0 M0 S0" defaultSpan="L2 M6 S12" position="Right" width="279px" containerQuery="false" hSpacing="2" vSpacing="0" visible="true" class="sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
+                                <layout:content>
+                                    <Button text="" type="Transparent" icon="sap-icon://person-placeholder" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                    <Button text="" type="Default" icon="sap-icon://microphone" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress" />
+                                    <Button text="" type="Transparent" icon="sap-icon://bell" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                    <Button text="" type="Transparent" icon="sap-icon://cart" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" />
+                                    <Button text="" type="Transparent" icon="sap-icon://camera" iconFirst="true" width="27px" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1" />
+                                </layout:content>
+                            </layout:Grid>
+                            <Label text="" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                        </items>
+                        <layoutData />
+                    </HBox>
+                    <layout:Grid defaultIndent="L0 M0 S0" defaultSpan="L3 M6 S12" position="Left" width="738.09375px" containerQuery="false" hSpacing="1" vSpacing="1" visible="true">
+                        <layout:content>
+                            <Text text="Categories" width="158.00000000px" maxLines="4" wrapping="false" textAlign="Center" textDirection="RTL" visible="true" class="sapUiSmallMargin" />
+                            <ComboBox placeholder="Mobiles" editable="true" enabled="true" visible="true" width="400px" valueState="None" maxWidth="100%">
+                                <items>
+                                    <core:Item text="Mobiles" enabled="true" key="Mobiles" />
+                                    <core:Item text="PCs" enabled="true" key="PCs" />
+                                    <core:Item text="Refrigerators" enabled="true" key="Refrigerators" />
+                                </items>
+                            </ComboBox>
+                        </layout:content>
+                    </layout:Grid>
+                    <GenericTile header="Orders" subheader="All Order details" frameType="OneByOne" class="sapUiMediumMargin" press="onGenericTilePress">
+                        <tileContent>
+                            <TileContent footer="" unit="">
+                                <content>
+                                    <NumericContent value="15" valueColor="Neutral" indicator="None" icon="sap-icon://order-status" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                    <GenericTile header="Automated" subheader="Ordered from Watson" frameType="OneByOne" class="sapUiMediumMargin">
+                        <tileContent>
+                            <TileContent footer="" unit="">
+                                <content>
+                                    <NumericContent value="10" valueColor="Good" indicator="None" icon="/webapp/resources/1e955db131fe1df6719a9445b94096d2.png" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                    <GenericTile header="Pinned" subheader="Favourite Items" frameType="OneByOne" class="sapUiMediumMargin" press="onPinnedPress">
+                        <tileContent>
+                            <TileContent footer="" unit="">
+                                <content>
+                                    <NumericContent value="6" valueColor="Neutral" indicator="None" icon="sap-icon://pushpin-off" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                    <GenericTile header="Pending" subheader="Awaiting approval" frameType="OneByOne" class="sapUiMediumMargin">
+                        <tileContent>
+                            <TileContent footer="" unit="">
+                                <content>
+                                    <NumericContent value="2" valueColor="Neutral" indicator="None" icon="sap-icon://email" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                    <GenericTile header="Declined" subheader="Not approved" frameType="OneByOne" class="sapUiMediumMargin">
+                        <tileContent>
+                            <TileContent footer="" unit="">
+                                <content>
+                                    <NumericContent value="1" valueColor="Error" indicator="None" icon="sap-icon://sys-cancel-2" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+                    <Title text="Recent Orders" titleStyle="H1" width="100%" textAlign="Center" visible="true" wrapping="false" />
+                    <ScrollContainer horizontal="false" vertical="false" width="1228px" height="249px" visible="true" class="sapUiTinyMargin sapUiContentPadding">
+                        <content>
+                            <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                                <tiles>
+                                    <GenericTile header="Charger" subheader="Apple" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="January 30, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features:" subheader="Lightning-to-USB" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                    <GenericTile header="Power Adapter" subheader="Sony" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="January 30, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features:" subheader="C type" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                </tiles>
+                            </SlideTile>
+                            <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                                <tiles>
+                                    <GenericTile header="Refrigerator" subheader="Samsung" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="February 1, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features:" subheader="700 Litres" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                    <GenericTile header="Mini Fridge" subheader="Mitsubishi" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="February 2, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features" subheader="100 Litres" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                </tiles>
+                            </SlideTile>
+                            <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                                <tiles>
+                                    <GenericTile header="Refrigerator" subheader="LG electronics" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="January 29, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features:" subheader="500 Litres" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                    <GenericTile header="Freezer" subheader="Bosch" frameType="TwoByOne">
+                                        <tileContent>
+                                            <TileContent footer="January 29, 2023">
+                                                <content>
+                                                    <NewsContent contentText="Features:" subheader="800 Litres" />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                </tiles>
+                            </SlideTile>
+                        </content>
+                    </ScrollContainer>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

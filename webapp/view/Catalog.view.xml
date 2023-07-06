@@ -1,0 +1,101 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.demo.ztabledemo.controller.Catalog" xmlns="sap.m">
+    <Page showHeader="true" title="Pinned Items" showFooter="true" showNavButton="true" navButtonPress="onPageNavButtonPress">
+        <content>
+            <!-- <Button text="Search Result for &quot;iPhone Charger&quot;" type="Unstyled" iconFirst="true" width="1212.875px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="_onButtonPress"/> -->
+            <ScrollContainer horizontal="false" vertical="false" width="1216.109375px" height="710.109375px" visible="true" class="sapUiResponsiveMargin sapUiContentPadding">
+                <content>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="Refrigerator" subheader="Samsung" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="September 30, 2022" >
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="700 Litres"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="96W USB-C Power Adapter" subheader="Apple" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="November 30, 2022">
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="96W USB-C Power Adapter"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="USB-C to Lightning Cable (1m)" subheader="Apple" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="December 30, 2022" >
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="1 meter"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="USB-C to Lightning Cable (2m)" subheader="Apple" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="December 30, 2022" >
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="2 meter"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="Mini Fridge" subheader="Samsung" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="January 30, 2023" >
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="100 Litres"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                    <SlideTile displayTime="5000" transitionTime="500" class="sapUiSmallMargin">
+                        <tiles>
+                            <GenericTile header="Lightning to USB Cable (2m)" subheader="Apple" frameType="TwoByOne">
+                                <tileContent>
+                                    <TileContent footer="January 30, 2023">
+                                        <content>
+                                            <NewsContent contentText="Features:" subheader="2 meter"/>
+                                        </content>
+                                    </TileContent>
+                                </tileContent>
+                            </GenericTile>
+                        </tiles>
+                    </SlideTile>
+                </content>
+            </ScrollContainer>
+        </content>
+        <!-- <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <ToolbarSpacer width=""/>
+                    <Button text="Prev" type="Default" icon="sap-icon://sys-prev-page" iconFirst="true" width="85px" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="Next" type="Default" icon="sap-icon://sys-next-page" iconFirst="true" width="88px" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </footer> -->
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

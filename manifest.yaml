@@ -1,0 +1,39 @@
+---
+_sapui5:
+  minUI5Version: "1.71.24"
+  resources:
+    css:
+      style.css:
+        uri: "webapp/css/style.css"
+
+sap.app:
+  id: "com.demo.ztabledemo"
+  type: application
+  title: IBMSmartWA
+
+sap.ui:
+  technology: Fiori
+  icons:
+    icon: 
+      uri: "sap-icon://home"
+  deviceTypes:
+    desktop:
+      available: true
+    tablet:
+      available: true
+    phone:
+      available: true
+
+sap.ui5:
+  rootView:
+    viewName: "com.demo.ztabledemo.view.app"
+    type: "XML"
+    async: true
+    id: "App"
+
+applications:
+- name: IBMSmartWA
+  title: IBM Smart Procurement Application
+  main: sapui5
+  buildpack:  sap_java_buildpack_1_68 
+

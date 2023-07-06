@@ -1,0 +1,206 @@
+{
+    "_version": "1.48.0",
+    "sap.app": {
+        "id": "com.demo.ztabledemo",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.3",
+            "toolsId": "718f09e7-e371-4b0d-b919-2b14eea0c850"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Demo",
+                    "action": "display",
+                    "title": "Demo",
+                    "icon": "sap-icon://accept"
+                }
+            }
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/V4/Northwind/Northwind.svc/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "purchaseOrder": {
+                "uri": "/sap/opu/odata/SAP/ZSPA_PURCHASEORDER_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZSPA_PURCHASEORDER_SRV.xml"
+                }
+            },
+            "tableData_alias": {
+                "uri": "model/objects.json",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.108.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.demo.ztabledemo.i18n.i18n"
+                }
+            },
+            "main": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "purchaseOrder": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                  "defaultOperationMode": "Server",
+                  "defaultBindingMode": "OneWay",
+                  "defaultCountMode": "Request"
+                },
+                "dataSource": "purchaseOrder",
+                "preload": true
+              },
+            "tableData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "tableData_alias"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.demo.ztabledemo.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteLandingPage",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetLandingPage"
+                    ]
+                },
+                {
+                    "pattern": "Catalog",
+                    "name": "Catalog",
+                    "target": "Catalog"
+                },
+                {
+                    "pattern": "chargerCatalog",
+                    "name": "chargerCatalog",
+                    "target": "chargerCatalog"
+                },
+                {
+                    "pattern": "Page6",
+                    "name": "Page6",
+                    "target": "Page6"
+                }
+            ],
+            "targets": {
+                "TargetLandingPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "LandingPage",
+                    "viewName": "LandingPage"
+                },
+                "Page6": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Page6",
+                    "viewName": "Page6"
+                },
+                "Catalog": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Catalog",
+                    "viewName": "Catalog"
+                },
+                "chargerCatalog": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "chargerCatalog",
+                    "viewName": "chargerCatalog"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.demo.ztabledemo.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "com-demo-ztabledemo"
+    }
+}

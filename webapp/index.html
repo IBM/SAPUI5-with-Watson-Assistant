@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IBM Smart Procurement Advisor</title>
+    <style>
+        html, body, body > div, #container, #container-uiarea {
+            height: 100%;
+        }
+    </style>
+    <script
+        id="sap-ui-bootstrap"
+        src="resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-resourceroots='{
+            "com.demo.ztabledemo": "./"
+        }'
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted"
+    ></script>
+    <script id="locate-reuse-libs" src="./utils/locate-reuse-libs.js"
+        data-sap-ui-manifest-uri="./manifest.json"
+        data-sap-ui-componentName="com.demo.ztabledemo">
+    </script> 
+    
+    <!--Niteesh's Watson Bot-->
+    <script>
+        window.watsonAssistantChatOptions = {
+          integrationID: "adbbe939-bc18-4a67-a017-061f15c8ac34", // The ID of this integration.
+          region: "us-south", // The region your integration is hosted in.
+          serviceInstanceID: "4a0294fe-db18-4353-95fe-195191627c6b", // The ID of your service instance.
+          onLoad: function(instance) { 
+
+          /* instance.render().then(function() {
+          instance.openWindow();
+          instance.updateOptions({hideCloseButton: true});
+        }); */ 
+            instance.render();
+         }
+        };
+        setTimeout(function(){
+          const t=document.createElement('script');
+          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+          document.head.appendChild(t);
+        });
+      </script>
+      <!--Sebastian's Watson Bot-->
+     <!-- <script id="watsonAssistant">
+        window.watsonAssistantChatOptions = {
+           integrationID: "a57faa7e-d9da-4735-a028-34c210b5aea2", // The ID of this integration.
+           region: "eu-de", // The region your integration is hosted in.
+           serviceInstanceID: "4e076513-6bd0-42a3-b1ce-adbe3b450c74", // The ID of your service instance.
+           onLoad: function(instance) { 
+               instance.render();  // Renders the web chat widget on your page.
+           }
+        };
+        setTimeout(function(){
+           const t=document.createElement('script');
+           t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+           document.head.appendChild(t);
+        });
+       </script> --> 
+</head>
+<body class="sapUiBody sapUiSizeCompact" id="content">
+    <div
+        data-sap-ui-component
+        data-name="com.demo.ztabledemo"
+        data-id="container"
+        data-settings='{"id" : "com.demo.ztabledemo"}'
+        data-handle-validation="true"
+    ></div>
+</body>
+</html>
