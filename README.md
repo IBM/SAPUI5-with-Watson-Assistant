@@ -59,10 +59,7 @@ Steps to integrate Watson Assistant Chatbot on Web Applications or SAPUI5/Fiori 
 
 ![fig5](images/fig5.jpg)
 # Summary 
-- A crucial aspect emphasized in this tutorial is the configuration of the Watson Assistant Embed. Properly setting up and configuring the Embed feature ensures optimal functionality and alignment with web application requirements. By following the provided instructions, users will discover a straightforward approach to seamlessly connect the Watson Assistant Chatbot service to various platforms, including websites, web applications, and mobile applications. 
-Leveraging the capabilities of IBM Cloud, specifically IBM Watson Assistant on IBM Cloud or Watson Studio on IBM Cloud, the integration process becomes more efficient. These robust cloud-based tools empower users to analyze and enhance data according to their specific needs and preferences. By utilizing Watson Assistant on IBM Cloud, users can tap into the power of natural language understanding and machine learning, enabling intelligent and context-aware conversations with the Chatbot. Customization and training options further allow for accurate and tailored responses. 
-
-- This tutorial serves as a comprehensive guide for data scientists and developers, providing the necessary steps to integrate IBM Watson Assistant seamlessly. By leveraging the capabilities of IBM Cloud, users can enhance their web applications with intelligent conversational agents, delivering exceptional user experiences and valuable insights derived from user interactions. 
+This tutorial serves as a comprehensive guide for data scientists and developers, providing the necessary steps to integrate IBM Watson Assistant seamlessly across different web applications. By leveraging the capabilities of IBM Cloud, users can enhance their web applications with intelligent conversational agents that deliver exceptional user experiences and valuable insights.
 
 
 # Next Steps
