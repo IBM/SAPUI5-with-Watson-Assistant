@@ -8,7 +8,7 @@ As a data scientist cannot directly integrate Watson Assistant chatbot directly 
 # Learning Objectives
 
 When you have completed this tutorial, you will understand how to: 
-- Add Watson Assistant to a SAP UI5/Fiori application 
+- Add Watson Assistant to a SAP UI5/Fiori application
 - Add Watson Assistant to a JavaScript Web application 
 - Save the Watson Assistant chatbot to IBM Cloud 
 
