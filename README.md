@@ -53,14 +53,9 @@ Steps to integrate Watson Assistant Chatbot on Web Applications or SAPUI5/Fiori 
 # Step 4: Testing the Chatbot and checking the UI 
 - Now we need to run our application and the Watson Assistant is now available at the bottom right corner of the screen to answer your queries. 
 
-
-![fig4-1](images/fig4-1.jpg)
-
-
 ![fig4-2](images/fig4-2.jpg)
 
 **NOTE**: And the above 4 steps can get Watson Assistant Chatbot ready in any SAP UI5/Fiori application. 
-
 
 ![fig5](images/fig5.jpg)
 # Summary 
