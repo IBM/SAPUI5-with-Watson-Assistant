@@ -1,16 +1,16 @@
 # Seamless Integration: Empowering Web Applications with IBM Watson Assistant 
 - By [Ankit Guria](https://w3.ibm.com/#/people/003Z1Y744) Technology Engineer, IBM Ecosystem Engineering, Blue Partners Lab
 
-In this tutorial, we will perform addition of IBM Watson Assistant to multiple web applications and the steps on how to integrate our Watson Assistant using IBM Cloud to any Web Application. 
-A data scientist cannot directly integrate the Watson Assistant Chatbot a directly into the UI Frontend of the wen applications. The Watson Assistant Embed configuration is very essential before building the Chatbot. In this tutorial, we demonstrate how you can easily connect the built Watson Assistant Chatbot service into the website or the browser-dependent web applications or mobile applications, analyse the data, and enhance the data according to requirements with the help of IBM Watson Assistant on IBM Cloud or Watson Studio on IBM Cloud. 
-In this comprehensive tutorial, we will explore the process of seamlessly integrating IBM Watson Assistant into multiple web applications using the powerful capabilities of IBM Cloud. With Watson Assistant, even data scientists can directly integrate the Chatbot into the UI Frontend of web applications, making it a versatile tool for enhancing user experiences. 
+In this tutorial, we will show how to add IBM Watson Assistant to multiple web applications and the steps on how to integrate our Watson Assistant using IBM Cloud to any web application. In this comprehensive detailed tutorial, we will show how to seamlessly integrate Watson Assistant into multiple web applications, using the powerful capabilities of IBM Cloud. You’ll see how Watson Assistant, enables not only developers but also  data scientists to directly integrate the Chatbot into the UI HTML of web applications, making it a versatile tool for enhancing user experiences.
+
+As a data scientist cannot directly integrate Watson Assistant chatbot directly into the UI frontend of the web applications, it is essential that the Watson Assistant Embedded configuration is done before building the Chatbot.With the help of Watson Assistant on IBM Cloud or Watson Studio on IBM Cloud, you can easily connect the built Watson Assistant Chatbot service into a website or a browser-dependent web applications or mobile applications, analyse the data, and enhance the data according to the user/business requirements.
 
 # Learning Objectives
 
 When you have completed this tutorial, you will understand how to: 
-- Add Watson Assistant to a SAP UI5/Fiori Application 
-- Add Watson Assistant to a JavaScript Web Application 
-- Save the Watson Assistant into our IBM Cloud 
+- Add Watson Assistant to a SAP UI5/Fiori application 
+- Add Watson Assistant to a JavaScript Web application 
+- Save the Watson Assistant chatbot to IBM Cloud 
 
 # Prerequisite
 
@@ -39,7 +39,7 @@ Steps to integrate Watson Assistant Chatbot on Web Applications or SAPUI5/Fiori 
 
 - The following is the architecture of a SAP UI5 application, we are using VS code for the development purpose, we can use other IDEs as well as per our requirement. 
 
-![fig2](images/fig2.png)
+![fig2](images/fig2.jpg)
 
 **Note**: The above is an SAP UI5/Fiori application project architecture. We are supposed to play around the “Index.html” file of the application. 
 
@@ -70,15 +70,9 @@ Leveraging the capabilities of IBM Cloud, specifically IBM Watson Assistant on I
 - This tutorial serves as a comprehensive guide for data scientists and developers, providing the necessary steps to integrate IBM Watson Assistant seamlessly. By leveraging the capabilities of IBM Cloud, users can enhance their web applications with intelligent conversational agents, delivering exceptional user experiences and valuable insights derived from user interactions. 
 
 
-
-# Summary
-
-This completes the tutorial on how to use the convertor script provided in this repo to migrate some of the components directly to Watson Assistant.
-
 # Next Steps
 
-As next steps this project can now be used as a base to build and add more features on top of it to create chatbots of different use case.
-
+As next steps, this project can now be used as a base to build and add more features on top of it to create chatbots for different use cases.
 Watson Assistant Documentation:
 
 https://cloud.ibm.com/docs/assistant?topic=assistant-getting-started
